@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: chatconnect-backend
+
+server:
+  address: 0.0.0.0
+  port: ${PORT:8080}

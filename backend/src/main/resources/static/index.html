@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10101b">
+  <meta name="description" content="A private, temporary chat room for two people. No account, no saved history.">
+  <title>ChatConnect — a little space to talk</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ChatConnect home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+      <span>chat<span class="brand-light">connect</span></span>
+    </a>
+    <div class="privacy-note"><span class="privacy-dot"></span> Private by design</div>
+  </header>
+
+  <main>
+    <section class="welcome-view" id="welcomeView">
+      <div class="intro">
+        <div class="eyebrow"><span class="eyebrow-line"></span> JUST YOU TWO</div>
+        <h1>A little space<br>to <span>talk.</span></h1>
+        <p class="intro-copy">No accounts. No old messages. Just a room for the conversation you’re having right now.</p>
+        <div class="promise-row">
+          <div class="promise"><span class="promise-icon">↗</span><span>One room<br><b>two people</b></span></div>
+          <div class="promise"><span class="promise-icon">⌁</span><span>Live messages<br><b>nothing saved</b></span></div>
+        </div>
+      </div>
+
+      <section class="entry-card" aria-labelledby="entryTitle">
+        <div class="card-orbit" aria-hidden="true"></div>
+        <div class="card-heading">
+          <div class="card-icon" aria-hidden="true">✳</div>
+          <div><span class="card-kicker">YOUR CONVERSATION</span><h2 id="entryTitle">Start with a name</h2></div>
+        </div>
+        <label class="field-label" for="displayName">What should we call you?</label>
+        <input id="displayName" class="text-input" maxlength="24" autocomplete="nickname" placeholder="e.g. Alex" required>
+        <div class="entry-actions">
+          <button class="button button-primary" id="createButton" type="button"><span>Create a room</span><span aria-hidden="true">↗</span></button>
+          <div class="or-divider"><span></span>or join a friend<span></span></div>
+          <div class="join-row">
+            <input id="roomCode" class="text-input code-input" maxlength="6" autocomplete="off" placeholder="ROOM CODE" aria-label="Room code">
+            <button class="button button-secondary" id="joinButton" type="button" aria-label="Join room">Join <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <p class="form-note" id="entryError" role="alert" aria-live="polite"></p>
+        <p class="tiny-note"><span aria-hidden="true">◉</span> A room closes when both of you leave.</p>
+      </section>
+    </section>
+
+    <section class="chat-view hidden" id="chatView" aria-label="Chat room">
+      <aside class="chat-sidebar">
+        <div class="sidebar-label">YOUR ROOM</div>
+        <div class="room-code-card">
+          <div class="room-code-label">ROOM CODE</div>
+          <div class="room-code-display" id="roomCodeDisplay">------</div>
+          <button class="copy-button" id="copyButton" type="button"><span aria-hidden="true">▢</span> Copy invite code</button>
+        </div>
+        <div class="people-card">
+          <div class="sidebar-label">IN THIS ROOM <span id="peopleCount">1 / 2</span></div>
+          <div class="person-row"><span class="avatar avatar-self" id="selfAvatar">A</span><span class="person-name" id="selfName">You</span><span class="online-dot"></span></div>
+          <div class="person-row"><span class="avatar avatar-peer">✳</span><span class="person-name" id="peerName">Waiting for them…</span><span class="waiting-dot" id="peerStatusDot"></span></div>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="privacy-card"><span class="privacy-card-icon">⌁</span><div><b>Nothing is saved</b><p>Messages disappear when you leave.</p></div></div>
+          <button class="leave-button" id="leaveButton" type="button"><span aria-hidden="true">↙</span> Leave room</button>
+        </div>
+      </aside>
+
+      <div class="conversation">
+        <header class="conversation-header">
+          <div><div class="conversation-title">A private conversation</div><div class="connection-state"><span class="connection-dot" id="connectionDot"></span><span id="connectionLabel">Waiting for your person</span></div></div>
+          <div class="header-lock" title="Messages are not saved" aria-label="Messages are not saved">⌑</div>
+        </header>
+        <div class="message-list" id="messageList" aria-live="polite" aria-label="Messages">
+          <div class="conversation-start" id="conversationStart"><span class="start-spark">✳</span><b>You’re here.</b><span>Your messages will appear here. They’re only shared live, never saved.</span></div>
+        </div>
+        <div class="typing-line hidden" id="typingLine"></div>
+        <form class="composer" id="messageForm">
+          <label class="sr-only" for="messageInput">Write a message</label>
+          <input id="messageInput" maxlength="1000" autocomplete="off" placeholder="Write something…" disabled>
+          <span class="composer-hint">Enter to send</span>
+          <button class="send-button" id="sendButton" type="submit" disabled aria-label="Send message">↗</button>
+        </form>
+        <div class="mobile-privacy"><span>⌁</span> Temporary chat · no history</div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
