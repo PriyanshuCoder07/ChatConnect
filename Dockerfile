@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-25 AS build
+FROM maven:3.10.0-eclipse-temurin-25 AS build
 WORKDIR /workspace
 COPY backend/pom.xml ./pom.xml
 COPY backend/src ./src
