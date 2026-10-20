@@ -3,8 +3,17 @@ $projectRoot = $PSScriptRoot
 $backendPath = Join-Path $projectRoot 'backend'
 $mavenPath = $null
 
-if (-not (Get-Command java -ErrorAction SilentlyContinue)) {
-    Write-Host 'Java was not found. Install a JDK 17 or newer, then run this launcher again.' -ForegroundColor Red
+$javaCommand = Get-Command java -ErrorAction SilentlyContinue
+if (-not $javaCommand) {
+    Write-Host 'Java was not found. Install JDK 25 or newer, then run this launcher again.' -ForegroundColor Red
+    Read-Host 'Press Enter to close'
+    exit 1
+}
+
+$javaVersionOutput = & $javaCommand.Source -version 2>&1
+$javaVersionMatch = ($javaVersionOutput | Select-String -Pattern 'version "(\d+)' | Select-Object -First 1)
+if (-not $javaVersionMatch -or [int]$javaVersionMatch.Matches[0].Groups[1].Value -lt 25) {
+    Write-Host 'ChatConnect requires JDK 25 or newer. Install a supported JDK, then run this launcher again.' -ForegroundColor Red
     Read-Host 'Press Enter to close'
     exit 1
 }

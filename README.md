@@ -37,7 +37,7 @@ The app has a Spring Boot backend, in-memory two-person rooms, live WebSocket me
 
 ## Run the backend
 
-Prerequisites: JDK 17 or newer and Maven 3.6.3 or newer. MySQL is not needed.
+Prerequisites: JDK 25 or newer and Maven 3.6.3 or newer. MySQL is not needed.
 
 Double-click `Start ChatConnect.bat`, or from PowerShell run `Start ChatConnect.ps1`. The launcher looks for Maven on PATH or in the standard local Maven-wrapper cache. You can also start it manually from `ChatConnect/backend`:
 
@@ -47,7 +47,7 @@ mvn spring-boot:run
 
 Open `http://localhost:8080` after the server reports that it started. Open the same address in two browser tabs (or on two computers on the same network), create a room in one, and join with its code in the other. For a second computer, use the host computer's local network IP address instead of `localhost` and make sure Windows Firewall allows the connection.
 
-No MySQL installation, Maven command on PATH, account, or environment file is required by the launcher. A JDK 17+ is required. The first Maven run may download dependencies from Maven Central.
+No MySQL installation, Maven command on PATH, account, or environment file is required by the launcher. A JDK 25+ is required. The first Maven run may download dependencies from Maven Central.
 
 ## Deploy for friends
 
